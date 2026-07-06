@@ -6,6 +6,7 @@ import { initNavigationHighlight } from './modules/navigation.js';
 import { initModelSelector } from './modules/modelSelector.js';
 import { initCartFeedback } from './modules/cartFeedback.js';
 import { initCart } from './modules/cart.js';
+import { initProductSearch } from './modules/search.js';
 
 // Initialize Vercel Web Analytics
 inject();
@@ -18,6 +19,7 @@ function initApp() {
   initModelSelector();
   initCartFeedback();
   initCart();
+  initProductSearch();
 }
 
 document.addEventListener('DOMContentLoaded', initApp);

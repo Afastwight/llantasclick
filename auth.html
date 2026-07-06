@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acceso - LlantasClick</title>
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-card">
+      <a href="/" class="nav-logo">LLANTAS<span>CLICK</span></a>
+
+      <h1>Acceso de usuario</h1>
+      <p>Inicia sesión o crea una cuenta para consultar tu historial de pedidos.</p>
+
+      <div class="auth-tabs">
+        <button id="loginTab" class="active">Iniciar sesión</button>
+        <button id="registerTab">Registrarse</button>
+      </div>
+
+      <form id="loginForm" class="auth-form">
+        <label>Correo electrónico</label>
+        <input type="email" id="loginEmail" required />
+
+        <label>Contraseña</label>
+        <input type="password" id="loginPassword" required />
+
+        <button type="submit">Entrar</button>
+        <button type="button" id="resetPasswordBtn" class="link-button">Olvidé mi contraseña</button>
+      </form>
+
+      <form id="registerForm" class="auth-form hidden">
+        <label>Nombre completo</label>
+        <input type="text" id="registerName" required />
+
+        <label>Correo electrónico</label>
+        <input type="email" id="registerEmail" required />
+
+        <label>Contraseña</label>
+        <input type="password" id="registerPassword" minlength="8" required />
+
+        <button type="submit">Crear cuenta</button>
+      </form>
+
+      <p id="authMessage"></p>
+    </section>
+  </main>
+
+  <script type="module" src="/src/js/auth.js"></script>
+</body>
+</html>

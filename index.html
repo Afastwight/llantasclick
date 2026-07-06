@@ -19,6 +19,7 @@
     <li><a href="#compatibilidad">Mi Vehículo</a></li>
     <li><a href="#testimonios">Reseñas</a></li>
     <li><a href="#cta-final" class="nav-cta">Comprar</a></li>
+    <li><a href="/auth.html">Mi cuenta</a></li>
   </ul>
   <button class="cart-toggle" id="cartToggle" type="button">
     🛒 Carrito<span id="cartCount">0</span>
@@ -193,6 +194,16 @@
   <div class="section-tag">Productos destacados</div>
   <h2 class="section-title reveal">Los más vendidos<br>esta semana</h2>
 
+  <!-- Buscador -->
+  <div>
+    <input 
+      type="search"
+      id="productSearch"
+      placeholder="Buscar por marca, modelo o tipo de vehiculo..."
+      />
+  </div>
+
+  <!-- FILTRO -->
   <div class="catalog-filter reveal">
     <button class="filter-btn active" data-filter="todos">Todos</button>
     <button class="filter-btn" data-filter="sedan">Sedán</button>
@@ -200,6 +211,8 @@
     <button class="filter-btn" data-filter="comercial">Comercial</button>
     <button class="filter-btn" data-filter="sport">Sport</button>
   </div>
+
+
 
   <div class="products-grid" id="productsGrid">
 
@@ -649,6 +662,16 @@
       <p>La plataforma de comercio electrónico especializada en llantas más completa de Ecuador. Precios justos, asesoría técnica y entrega garantizada desde 2026.</p>
     </div>
     <div class="footer-col">
+      <h4>Terminos</h4>
+      <ul>
+        <li><a href="/privacidad.html">Política de privacidad</a></li>
+        <li><a href="/terminos.html">Términos y condiciones</a></li>
+        <li><a href="/cookies.html">Política de cookies</a></li>
+        <li><a href="/devoluciones.html">Política de devoluciones</a></li>
+        <li><a href="/proteccion-datos.html">Protección de datos personales</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
       <h4>Productos</h4>
       <ul>
         <li>Llantas para Auto</li>
@@ -693,7 +716,7 @@
 <!-- ── WHATSAPP FLOAT ── -->
 <a href="#" class="whatsapp-float" title="Escríbenos por WhatsApp">💬</a>
 
-<!-- CARRITO DE COMPRA -->
+<!-- CARRITO COMPRA -->
 <div class="cart-overlay" id="cartOverlay"></div>
 
 <aside class="cart-drawer" id="cartDrawer">

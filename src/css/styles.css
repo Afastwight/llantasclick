@@ -1455,3 +1455,142 @@ footer {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.product-search {
+  margin: 1.5rem 0 2rem;
+}
+
+.product-search input {
+  width: 100%;
+  background: var(--negro);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: var(--blanco-puro);
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem;
+  padding: 14px 18px;
+}
+
+.product-search input:focus {
+  outline: none;
+  border-color: var(--rojo);
+}
+
+.auth-page,
+.account-page,
+.legal-page {
+  min-height: 100vh;
+  padding: 100px 5%;
+  background: var(--negro);
+  color: var(--blanco);
+}
+
+.auth-card,
+.account-card,
+.legal-page {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--gris-carbon);
+  padding: 2rem;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.auth-card h1,
+.account-card h1,
+.legal-page h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: var(--blanco-puro);
+  margin: 1rem 0;
+}
+
+.auth-card p,
+.account-card p,
+.legal-page p {
+  color: var(--gris-claro);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin: 2rem 0;
+}
+
+.auth-tabs button,
+.auth-form button,
+.account-actions button {
+  border: none;
+  cursor: pointer;
+  padding: 12px 18px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.auth-tabs button {
+  background: #111;
+  color: var(--gris-claro);
+}
+
+.auth-tabs button.active {
+  background: var(--rojo);
+  color: #fff;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.auth-form label {
+  color: var(--blanco-puro);
+  font-size: 0.9rem;
+}
+
+.auth-form input {
+  background: var(--negro);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: var(--blanco-puro);
+  padding: 13px;
+}
+
+.auth-form button {
+  background: var(--rojo);
+  color: #fff;
+  margin-top: 0.5rem;
+}
+
+.link-button {
+  background: transparent !important;
+  color: var(--gris-claro) !important;
+  text-align: left;
+  padding-left: 0 !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.account-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.order-card {
+  background: #111;
+  padding: 1rem;
+  border-left: 3px solid var(--rojo);
+  margin-bottom: 1rem;
+}
+
+.legal-page h2 {
+  color: var(--blanco-puro);
+  margin-top: 1.8rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+}
