@@ -83,8 +83,8 @@ export default async function handler(req, res) {
       payment_method_types: ['card'],
       mode: 'payment',
       line_items: lineItems,
-      success_url: `${baseUrl}/success.html`,
-      cancel_url: `${baseUrl}/cancel.html`
+      success_url: `${baseUrl}/success`,
+      cancel_url: `${baseUrl}/cancel`
     });
 
     return res.status(200).json({
