@@ -221,6 +221,7 @@ h1 .line-outline {
   animation: fadeSlideUp 0.8s 0.4s ease both;
 }
 .stat-item {}
+
 .stat-num {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 2.2rem;
@@ -948,6 +949,7 @@ section { padding: 100px 5%; }
 }
 
 .compat-right {}
+
 .compat-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(2.5rem, 4vw, 3.5rem);
@@ -1228,3 +1230,228 @@ footer {
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ════════════════════════ CARRITO DE COMPRAS ════════════════════════ */
+
+.cart-toggle {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--blanco-puro);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.cart-toggle:hover {
+  border-color: var(--rojo);
+  background: rgba(232,36,26,0.12);
+}
+
+.cart-toggle span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  margin-left: 6px;
+  background: var(--rojo);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 180;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.cart-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(430px, 92vw);
+  height: 100vh;
+  background: #101010;
+  border-left: 1px solid rgba(255,255,255,0.1);
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform 0.28s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -20px 0 50px rgba(0,0,0,0.45);
+}
+
+.cart-drawer.active {
+  transform: translateX(0);
+}
+
+.cart-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cart-header h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  color: var(--blanco-puro);
+}
+
+.cart-header p {
+  font-size: 0.85rem;
+  color: var(--gris-claro);
+  margin-top: 0.25rem;
+}
+
+.cart-close {
+  background: transparent;
+  border: none;
+  color: var(--blanco-puro);
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.5rem;
+}
+
+.cart-empty {
+  color: var(--gris-claro);
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.cart-item-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--blanco-puro);
+  text-transform: uppercase;
+}
+
+.cart-item-meta {
+  font-size: 0.8rem;
+  color: var(--gris-claro);
+  margin-top: 0.25rem;
+}
+
+.cart-item-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: var(--rojo);
+  text-align: right;
+}
+
+.cart-item-actions {
+  margin-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qty-btn,
+.remove-btn {
+  border: 1px solid rgba(255,255,255,0.14);
+  background: transparent;
+  color: var(--blanco-puro);
+  cursor: pointer;
+  padding: 5px 9px;
+  font-size: 0.85rem;
+}
+
+.qty-value {
+  min-width: 24px;
+  text-align: center;
+  color: var(--blanco-puro);
+}
+
+.remove-btn {
+  color: var(--rojo);
+}
+
+.cart-footer {
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: #080808;
+}
+
+.cart-total-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  color: var(--blanco-puro);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+
+.cart-total-row strong {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--rojo);
+}
+
+.checkout-btn,
+.whatsapp-order-btn {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px;
+  margin-top: 0.7rem;
+}
+
+.checkout-btn {
+  background: var(--rojo);
+  color: #fff;
+}
+
+.checkout-btn:hover {
+  background: var(--rojo-dark);
+}
+
+.whatsapp-order-btn {
+  background: #25D366;
+  color: #06150b;
+}
+
+.checkout-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
