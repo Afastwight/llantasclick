@@ -61,7 +61,7 @@ autosclick/
 
 ```markdown
 
-- git clone https://github.com/TU-USUARIO/autosclick.git
+- git clone https://github.com/Afastwight/autosclick.git
 - cd autosclick
 - npm install
 - npm run dev
