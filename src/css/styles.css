@@ -1500,7 +1500,6 @@ footer {
 .auth-card,
 .account-card,
 .legal-page {
-  max-width: 760px;
   margin: 0 auto;
   background: var(--gris-carbon);
   padding: 2rem;
