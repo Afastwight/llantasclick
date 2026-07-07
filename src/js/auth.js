@@ -7,11 +7,19 @@ const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
 const message = document.getElementById('authMessage');
 
+function showMessage(text, type = 'error') {
+  if (!message) return;
+
+  message.textContent = text;
+  message.className = type === 'success' ? 'auth-message success' : 'auth-message error';
+}
+
 loginTab?.addEventListener('click', () => {
   loginTab.classList.add('active');
   registerTab.classList.remove('active');
   loginForm.classList.remove('hidden');
   registerForm.classList.add('hidden');
+  showMessage('');
 });
 
 registerTab?.addEventListener('click', () => {
@@ -19,12 +27,13 @@ registerTab?.addEventListener('click', () => {
   loginTab.classList.remove('active');
   registerForm.classList.remove('hidden');
   loginForm.classList.add('hidden');
+  showMessage('');
 });
 
 loginForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
-  const email = document.getElementById('loginEmail').value;
+  const email = document.getElementById('loginEmail').value.trim();
   const password = document.getElementById('loginPassword').value;
 
   const { error } = await supabase.auth.signInWithPassword({
@@ -33,7 +42,7 @@ loginForm?.addEventListener('submit', async (event) => {
   });
 
   if (error) {
-    message.textContent = error.message;
+    showMessage(error.message);
     return;
   }
 
@@ -43,33 +52,61 @@ loginForm?.addEventListener('submit', async (event) => {
 registerForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
-  const name = document.getElementById('registerName').value;
-  const email = document.getElementById('registerEmail').value;
+  const name = document.getElementById('registerName').value.trim();
+  const email = document.getElementById('registerEmail').value.trim();
   const password = document.getElementById('registerPassword').value;
+  const termsAccepted = document.getElementById('termsAccepted').checked;
 
-  const { error } = await supabase.auth.signUp({
+  if (!termsAccepted) {
+    showMessage('Debes aceptar los términos y condiciones para crear una cuenta.');
+    return;
+  }
+
+  const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       data: {
-        full_name: name
+        full_name: name,
+        terms_accepted: termsAccepted
       }
     }
   });
 
   if (error) {
-    message.textContent = error.message;
+    showMessage(error.message);
     return;
   }
 
-  message.textContent = 'Cuenta creada. Revisa tu correo para confirmar el registro.';
+  const user = data.user;
+
+  if (!user) {
+    showMessage('Cuenta creada. Revisa tu correo para confirmar el registro.', 'success');
+    return;
+  }
+
+  const { error: profileError } = await supabase
+    .from('user_profiles')
+    .insert({
+      id: user.id,
+      full_name: name,
+      email: email,
+      terms_accepted: termsAccepted
+    });
+
+  if (profileError) {
+    showMessage(`La cuenta fue creada, pero hubo un problema guardando el perfil: ${profileError.message}`);
+    return;
+  }
+
+  showMessage('Cuenta creada correctamente. Revisa tu correo para confirmar el registro.', 'success');
 });
 
 document.getElementById('resetPasswordBtn')?.addEventListener('click', async () => {
-  const email = document.getElementById('loginEmail').value;
+  const email = document.getElementById('loginEmail').value.trim();
 
   if (!email) {
-    message.textContent = 'Ingresa tu correo para recuperar la contraseña.';
+    showMessage('Ingresa tu correo para recuperar la contraseña.');
     return;
   }
 
@@ -77,7 +114,10 @@ document.getElementById('resetPasswordBtn')?.addEventListener('click', async () 
     redirectTo: `${window.location.origin}/auth.html`
   });
 
-  message.textContent = error
-    ? error.message
-    : 'Te enviamos un enlace de recuperación al correo.';
+  if (error) {
+    showMessage(error.message);
+    return;
+  }
+
+  showMessage('Te enviamos un enlace de recuperación al correo.', 'success');
 });

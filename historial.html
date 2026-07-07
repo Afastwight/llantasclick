@@ -4,23 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Historial de pedidos - LlantasClick</title>
+  <link rel="stylesheet" href="/src/css/styles.css" />
 </head>
 <body>
+
   <main class="account-page">
     <section class="account-card">
-      <a href="/" class="nav-logo">LLANTAS<span>CLICK</span></a>
+      <span class="account-badge">Zona de usuario</span>
+
       <h1>Historial de pedidos</h1>
 
-      <div id="ordersList">
-        <p>Cargando pedidos...</p>
+      <p class="account-description">
+        Aquí podrás consultar los pedidos realizados desde tu cuenta, revisar el estado
+        de tus compras y verificar información general de cada orden.
+      </p>
+
+      <div class="orders-summary">
+        <div>
+          <span>Pedidos</span>
+          <strong id="ordersCount">0</strong>
+        </div>
+
+        <div>
+          <span>Estado</span>
+          <strong>Cuenta activa</strong>
+        </div>
+      </div>
+
+      <div id="ordersList" class="orders-list">
+        <p class="loading-text">Cargando pedidos...</p>
       </div>
 
       <div class="account-actions">
         <a href="/perfil.html" class="btn-primary">Volver al perfil</a>
+        <a href="/" class="btn-outline">Ir al inicio</a>
       </div>
     </section>
   </main>
 
-  <script type="module" src="/src/js/orders.js"></script>
+  <script type="module" src="./src/js/orders.js"></script>
 </body>
 </html>

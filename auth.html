@@ -4,40 +4,54 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Acceso - LlantasClick</title>
+  <link rel="stylesheet" href="./src/css/styles.css" />
 </head>
 <body>
+
   <main class="auth-page">
     <section class="auth-card">
-      <a href="/" class="nav-logo">LLANTAS<span>CLICK</span></a>
+      <span class="account-badge">Zona de usuario</span>
 
       <h1>Acceso de usuario</h1>
-      <p>Inicia sesión o crea una cuenta para consultar tu historial de pedidos.</p>
+      <p>Inicia sesión o crea una cuenta para consultar tu perfil e historial de pedidos.</p>
 
       <div class="auth-tabs">
-        <button id="loginTab" class="active">Iniciar sesión</button>
-        <button id="registerTab">Registrarse</button>
+        <button id="loginTab" class="active" type="button">Iniciar sesión</button>
+        <button id="registerTab" type="button">Registrarse</button>
       </div>
 
       <form id="loginForm" class="auth-form">
-        <label>Correo electrónico</label>
+        <label for="loginEmail">Correo electrónico</label>
         <input type="email" id="loginEmail" required />
 
-        <label>Contraseña</label>
+        <label for="loginPassword">Contraseña</label>
         <input type="password" id="loginPassword" required />
 
         <button type="submit">Entrar</button>
-        <button type="button" id="resetPasswordBtn" class="link-button">Olvidé mi contraseña</button>
+        <button type="button" id="resetPasswordBtn" class="link-button">
+          Olvidé mi contraseña
+        </button>
       </form>
 
       <form id="registerForm" class="auth-form hidden">
-        <label>Nombre completo</label>
+        <label for="registerName">Nombre completo</label>
         <input type="text" id="registerName" required />
 
-        <label>Correo electrónico</label>
+        <label for="registerEmail">Correo electrónico</label>
         <input type="email" id="registerEmail" required />
 
-        <label>Contraseña</label>
+        <label for="registerPassword">Contraseña</label>
         <input type="password" id="registerPassword" minlength="8" required />
+
+        <label class="terms-check">
+          <input type="checkbox" id="termsAccepted" required />
+          <span>
+            Acepto los
+            <a href="/terminos.html" target="_blank">términos y condiciones</a>
+            y la
+            <a href="/privacidad.html" target="_blank">política de privacidad</a>.
+          </span>
+        </label>
 
         <button type="submit">Crear cuenta</button>
       </form>
