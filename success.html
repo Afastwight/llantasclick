@@ -3,21 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pago exitoso - LlantasClick</title>
+  <title>Compra exitosa - LlantasClick</title>
   <link rel="stylesheet" href="/src/css/styles.css" />
 </head>
 <body>
-  <section style="min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;">
-    <div>
+  
+  <main class="account-page">
+    <section class="account-card">
+      <span class="account-badge">Pago confirmado</span>
+
       <h1>Pago exitoso</h1>
-      <p class="hero-sub" style="margin:auto;max-width:600px;">
-        Gracias por tu compra. Hemos recibido tu pago correctamente.
-        Pronto nos comunicaremos contigo para coordinar la entrega.
+
+      <p id="successMessage" class="account-description">
+        Estamos registrando tu pedido en el historial...
       </p>
-      <div class="hero-actions" style="justify-content:center;">
-        <a href="/" class="btn-primary">Volver al inicio</a>
+
+      <div class="account-actions">
+        <a href="/historial.html" class="btn-primary">Ver historial</a>
+        <a href="/" class="btn-outline">Volver al inicio</a>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
+
+  <script type="module" src="/src/js/success.js"></script>
 </body>
 </html>

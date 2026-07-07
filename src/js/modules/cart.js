@@ -1,3 +1,5 @@
+import { supabase } from './supabaseClient.js';
+
 const CART_KEY = 'llantasclick_cart';
 
 const productCatalog = {
@@ -222,12 +224,24 @@ async function checkout() {
     checkoutBtn.disabled = true;
     checkoutBtn.textContent = 'Procesando...';
 
+    const { data: userData } = await supabase.auth.getUser();
+
+    if (!userData.user) {
+      alert('Debes iniciar sesión antes de realizar una compra.');
+      window.location.href = '/auth.html';
+      return;
+    }
+
     const response = await fetch('/api/create-checkout-session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ cart })
+      body: JSON.stringify({ 
+        cart,
+        userId: userData.user.id,
+        userEmail: userData.user.email
+      })
     });
 
     const data = await response.json();

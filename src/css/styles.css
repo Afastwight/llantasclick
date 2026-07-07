@@ -2127,3 +2127,59 @@ footer {
   color: #86efac;
   border: 1px solid rgba(34, 197, 94, 0.35);
 }
+
+/* =========================
+   ESTADO DE USUARIO EN NAV
+========================= */
+
+.nav-account {
+  display: flex;
+  align-items: center;
+}
+
+.nav-account a,
+.account-link {
+  color: var(--gris-claro);
+  text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.25s ease;
+}
+
+.nav-account a:hover,
+.account-link:hover {
+  color: var(--rojo);
+}
+
+.account-logged {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.account-logged span {
+  color: var(--blanco-puro);
+  font-size: 0.9rem;
+  max-width: 130px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.account-logged button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--gris-claro);
+  padding: 7px 12px;
+  cursor: pointer;
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+  transition: 0.25s ease;
+}
+
+.account-logged button:hover {
+  border-color: var(--rojo);
+  color: var(--rojo);
+}

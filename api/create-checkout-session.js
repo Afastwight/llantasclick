@@ -43,11 +43,17 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { cart } = req.body;
+    const { cart, userId, userEmail } = req.body || {};
 
     if (!Array.isArray(cart) || cart.length === 0) {
       return res.status(400).json({
         error: 'El carrito está vacío.'
+      });
+    }
+
+    if (!userId) {
+      return res.status(401).json({
+        error: 'Debes iniciar sesión para comprar.'
       });
     }
 
@@ -83,8 +89,12 @@ export default async function handler(req, res) {
       payment_method_types: ['card'],
       mode: 'payment',
       line_items: lineItems,
-      success_url: `${baseUrl}/success`,
-      cancel_url: `${baseUrl}/cancel`
+      success_url: `${baseUrl}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/cancel.html`,
+      metadata: {
+        user_id: userId,
+        user_email: userEmail || ''
+      }
     });
 
     return res.status(200).json({
