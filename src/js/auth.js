@@ -85,19 +85,7 @@ registerForm?.addEventListener('submit', async (event) => {
     return;
   }
 
-  const { error: profileError } = await supabase
-    .from('user_profiles')
-    .insert({
-      id: user.id,
-      full_name: name,
-      email: email,
-      terms_accepted: termsAccepted
-    });
-
-  if (profileError) {
-    showMessage(`La cuenta fue creada, pero hubo un problema guardando el perfil: ${profileError.message}`);
-    return;
-  }
+  
 
   showMessage('Cuenta creada correctamente. Revisa tu correo para confirmar el registro.', 'success');
 });
