@@ -1,4 +1,5 @@
 import { supabase } from './supabaseClient.js';
+import { trackAddToCart, trackRemoveFromCart, trackBeginCheckout, trackViewItemList } from './analytics.js';
 
 const CART_KEY = 'llantasclick_cart';
 
@@ -151,6 +152,7 @@ function addToCart(productId) {
   saveCart(cart);
   renderCart();
   openCart();
+  trackAddToCart(product);
 }
 
 function updateQuantity(productId, action) {
@@ -175,8 +177,14 @@ function updateQuantity(productId, action) {
 
 function removeFromCart(productId) {
   const cart = getCart();
-  const updatedCart = cart.filter((item) => item.id !== productId);
+  const item = cart.find((i) => i.id === productId);
+  const product = productCatalog[productId];
 
+  if (item && product) {
+    trackRemoveFromCart(product, item.quantity);
+  }
+
+  const updatedCart = cart.filter((i) => i.id !== productId);
   saveCart(updatedCart);
   renderCart();
 }
@@ -223,6 +231,21 @@ async function checkout() {
   try {
     checkoutBtn.disabled = true;
     checkoutBtn.textContent = 'Procesando...';
+
+    const ga4Items = cart.map((item) => {
+      const p = productCatalog[item.id];
+      return {
+        item_id: p.id,
+        item_name: `${p.brand} ${p.name}`,
+        item_brand: p.brand,
+        item_category: p.spec,
+        price: p.price,
+        quantity: item.quantity
+      };
+    });
+    const cartValue = getCartTotal(cart);
+    trackBeginCheckout(ga4Items, cartValue);
+    localStorage.setItem('llantasclick_pending_purchase', JSON.stringify({ items: ga4Items, value: cartValue }));
 
     const { data: userData } = await supabase.auth.getUser();
 
@@ -292,4 +315,5 @@ export function initCart() {
   });
 
   renderCart();
+  trackViewItemList(Object.values(productCatalog));
 }

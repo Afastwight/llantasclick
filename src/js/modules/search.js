@@ -1,3 +1,5 @@
+import { trackSearch } from './analytics.js';
+
 export function initProductSearch() {
   const searchInput = document.getElementById('productSearch');
   const products = document.querySelectorAll('.product-card');
@@ -19,6 +21,8 @@ export function initProductSearch() {
   }
 
   emptyMessage.style.display = 'none';
+
+  let searchTimer;
 
   searchInput.addEventListener('input', () => {
     const term = searchInput.value.toLowerCase().trim();
@@ -42,5 +46,10 @@ export function initProductSearch() {
     });
 
     emptyMessage.style.display = visibleCount === 0 ? 'block' : 'none';
+
+    clearTimeout(searchTimer);
+    if (term.length >= 3) {
+      searchTimer = setTimeout(() => trackSearch(term), 1000);
+    }
   });
 }
